@@ -1,37 +1,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define LEN 300
-
-void Add(char a[], char b[], char c[])
+void Sub(char input1[], char input2[], char c[])
 {
+
+}
+void Add(char input1[], char input2[], char c[])
+{
+ char re_input1[LEN], re_input2[LEN];
+ int i, len1 = strlen(input1), len2 = strlen(input2);
+
+    for(i = 0;i<LEN;i++)
+ {
+     re_input1[i] = '0';
+     re_input2[i] = '0';
+
+ }
+ for(i=0;i<len1;i++)
+ {
+     re_input1[i] = input1[len1-i-1];
+ }
+
+ for(i=0;i<len2;i++)
+ {
+     re_input2[i] = input2[len2-i-1];
+ }
+
+
     int temp[LEN];
-    int i, strlen_a=0, strlen_b=0;
+    int  strlen_a=0, strlen_b=0;
     for(i=0;i<LEN;i++)
     {
-        if(a[i]!='0')
+        if(re_input1[i]!='0')
             strlen_a += 1;
-        if(b[i]!='0')
+        if(re_input2[i]!='0')
             strlen_b += 1;
     }
     for(i=0;i<LEN;i++)
      {
-         if(a[i] == '-' )
+         if(re_input1[i] == '-' )
          {
               if(strlen_a>strlen_b)
-                c[i] = a[i];
+                c[i] = re_input1[i];
               else
-                c[i] = b[i];
+                c[i] = re_input2[i];
          }
-         else if(b[i] == '-')
+         else if(re_input2[i] == '-')
          {
              if(strlen_b>strlen_a)
-                c[i] = b[i];
+                c[i] = re_input2[i];
              else
-                c[i] = a[i];
+                c[i] = re_input1[i];
          }
          else
-            c[i] = a[i] + b[i]-'0';
-         printf("c[i]:%c\n", c[i]);
+            c[i] = re_input1[i] + re_input2[i]-'0';
+         if(re_input1[i] == '0' && re_input2[i] == '0')
+            break;
 
      }
      for(i=0;i<LEN;i++)
@@ -89,29 +113,14 @@ void Print(char n[])
 
 void main()
 {
- char input1[] = "9999999", input2[] = "999", output[LEN];
- char re_input1[LEN], re_input2[LEN];
- int i, len1 = strlen(input1), len2 = strlen(input2);
-
-
- for(i = 0;i<LEN;i++)
+ char input1[] = "-99", input2[] = "-9", output[LEN];
+ int i;
+ for(i=0;i<LEN;i++)
  {
-     re_input1[i] = '0';
-     re_input2[i] = '0';
      output[i] = '0';
-
- }
- for(i=0;i<len1;i++)
- {
-     re_input1[i] = input1[len1-i-1];
  }
 
- for(i=0;i<len2;i++)
- {
-     re_input2[i] = input2[len2-i-1];
- }
-
- Add(re_input1, re_input2, output);
+ Add(input1, input2, output);
 
  re_Print(output);
 
