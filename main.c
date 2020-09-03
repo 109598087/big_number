@@ -32,24 +32,47 @@ for(i = 0;i<LEN;i++)
      if(re_input2[i] == '-')
         input2_m += 1;
  }
- if(len1 > len2)
- {
+
+
     if(input1_m == input2_m)
     {
      for(i=0;i<LEN;i++)
      {
-         if(re_input1[i] == '-')
+         if(re_input1[i] == '-' )
          {
-             c[i] = re_input1[i];
+             if(len1>len2)
+                c[i] = re_input1[i];
+             else
+                c[i] = re_input2[i];
          }
          else if(re_input2[i] == '-')
          {
-             c[i] = re_input1[i];
+             if(len2>len1)
+                c[i] = re_input2[i];
+             else
+                c[i] = re_input1[i];
          }
          else
-             c[i] = re_input1[i] - re_input2[i]+'0';
+            if(len1>len2)
+                c[i] = re_input1[i] - re_input2[i]+'0';
+            else
+                c[i] = re_input2[i] - re_input1[i]+'0';
          if(re_input1[i] == '0'&& re_input2[i] == '0') //有問題
-            break;
+            if(len1>len2)
+                break;
+            else
+            {
+                c[i] = '-';
+                break;
+            }
+     }
+     for(i=0;i<LEN;i++)
+     {
+            if(c[i] == '-' && c[i] == c[i+1])
+            {
+                c[i] = '0';
+                c[i+1] = '0';
+            }
      }
      int temp[LEN] = {0};
      for(i=0;i<LEN;i++)
@@ -88,68 +111,6 @@ for(i = 0;i<LEN;i++)
      printf("異號");
     }
  }
- else // len2 > len1
- {
-     if(input1_m == input2_m)
-     {
-        for(i=0;i<LEN;i++)
-        {
-            if(re_input1[i] == '-' || re_input2[i] == '-')
-            {
-                c[i] = re_input2[i];
-            }else
-            {
-                c[i] = re_input2[i] - re_input1[i] + '0';
-            }
-            if(re_input1[i] == '0'&& re_input2[i] == '0') //有問題
-            {
-                c[i] = '-';
-                break;
-            }
-
-            printf("1:%c, 2:%c, c:%c\n", re_input1[i], re_input2[i], c[i]);
-        }
-        for(i=0;i<LEN;i++){
-            if(c[i] == '-' && c[i] == c[i+1])
-            {
-                c[i] = '0';
-                c[i+1] = '0';
-            }
-        }
-
-     int temp[LEN] = {0};
-     for(i=0;i<LEN;i++)
-     {
-         if(c[i] == '-')
-         {
-             temp[i] = 100;
-             break;
-         }
-         temp[i] = c[i] - '0';
-     }
-     for(i=0;i<LEN-1;i++)
-     {
-         if(temp[i]<0)
-         {
-             temp[i+1] -= 1;
-             temp[i] = 10+temp[i];
-         }
-     }
-     for(i=0;i<LEN;i++)
-     {
-         if(temp[i] == 100)
-         {
-             c[i] = '-'; //maybe problem
-             break;
-         }
-         c[i] = temp[i] + '0';
-     }
-     }
-     else // 異號
-     {
-
-     }
- }
 
 
 
@@ -157,7 +118,8 @@ for(i = 0;i<LEN;i++)
 
 
 
-}
+
+
 void Add(char input1[], char input2[], char c[])
 {
  char re_input1[LEN], re_input2[LEN];
@@ -275,11 +237,11 @@ void Print(char n[])
 
 void main()
 {
- char input1[] = "-5", input2[] = "-1234", output[LEN];
+ char input1[] = "333", input2[] = "1111333", output[LEN];
  int i;
 
- // Add(input1, input2, output);
- Sub(input1, input2, output);
+ Add(input1, input2, output);
+ //Sub(input1, input2, output);
 
  re_Print(output);
 
