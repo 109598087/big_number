@@ -24,14 +24,21 @@ void Mul(char input1[], char input2[], char c[])
 
  //前置作業end
  int temp[LEN] = {0}, re_input1_int[LEN] = {0}, re_input2_int[LEN] = {0};
+ int m_count; //計算幾個負數
  for(i=0;i<len1;i++){
+    if(re_input1[i] == '-'){
+        m_count += 1;
+        break;
+    }
     re_input1_int[i] = re_input1[i] - '0';
  }
  for(i=0;i<len2;i++){
+    if(re_input2[i] == '-'){
+        m_count += 1;
+        break;
+    }
     re_input2_int[i] = re_input2[i] - '0';
  }
-
-
  for(i=0;i<LEN;i++){
     for(j=0;j<LEN;j++){
         temp[i+j] += re_input1_int[j] * re_input2_int[i];
@@ -41,14 +48,16 @@ void Mul(char input1[], char input2[], char c[])
         }
     }
  }
+
  for(i=0;i<LEN;i++){
     c[i] = temp[i] +'0';
  }
-
-
-
-
-
+ for(i=0;i<LEN;i++){
+    if(c[LEN-i-1] != '0' && m_count == 1){
+        c[LEN-i] = '-';
+        break;
+    }
+ }
 
 }
 void Sub(char input1[], char input2[], char c[])
@@ -447,7 +456,7 @@ void Print(char n[])
 
 void main()
 {
- char input1[] = "99999", input2[] = "99999", output[LEN];
+ char input1[] = "99999", input2[] = "-999", output[LEN];
  int i;
 
  //Add(input1, input2, output);
