@@ -1,6 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define LEN 100
+void Mul(char input1[], char input2[], char c[])
+{
+ char re_input1[LEN], re_input2[LEN];
+ int i, j, len1 = strlen(input1), len2 = strlen(input2);
+ for(i = 0;i<LEN;i++)
+ {
+     re_input1[i] = '0';
+     re_input2[i] = '0';
+     c[i] = '0';
+
+ }
+  for(i=0;i<len1;i++)
+ {
+     re_input1[i] = input1[len1-i-1];
+ }
+
+ for(i=0;i<len2;i++)
+ {
+     re_input2[i] = input2[len2-i-1];
+ }
+
+ //前置作業end
+ int temp[LEN] = {0}, re_input1_int[LEN] = {0}, re_input2_int[LEN] = {0};
+ for(i=0;i<len1;i++){
+    re_input1_int[i] = re_input1[i] - '0';
+ }
+ for(i=0;i<len2;i++){
+    re_input2_int[i] = re_input2[i] - '0';
+ }
+
+
+ for(i=0;i<LEN;i++){
+    for(j=0;j<LEN;j++){
+        temp[i+j] += re_input1_int[j] * re_input2_int[i];
+        if(temp[i+j]>=10){
+            temp[i+j+1] += temp[i+j]/10; //進位
+            temp[i+j] = temp[i+j]%10;     //取個位數
+        }
+    }
+ }
+ for(i=0;i<LEN;i++){
+    c[i] = temp[i] +'0';
+ }
+
+
+
+
+
+
+}
 void Sub(char input1[], char input2[], char c[])
 {
  char re_input1[LEN], re_input2[LEN];
@@ -201,8 +251,6 @@ else
  } //sub 異號 end
 } //sub end
 
-
-
 void Add(char input1[], char input2[], char c[])
 {
  char re_input1[LEN], re_input2[LEN];
@@ -399,11 +447,12 @@ void Print(char n[])
 
 void main()
 {
- char input1[] = "-5", input2[] = "1234", output[LEN];
+ char input1[] = "99999", input2[] = "99999", output[LEN];
  int i;
 
  //Add(input1, input2, output);
- Sub(input1, input2, output);
+ //Sub(input1, input2, output);
+ Mul(input1, input2, output);
 
  re_Print(output);
 
