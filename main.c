@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define LEN 100
+void testOper(char input1[], char input2[], char op)
+{
+    char c[LEN];
+    if(op == '+'){
+        Add(input1, input2, c);
+        re_Print(c);
+    }
+    if(op == '-'){
+        Sub(input1, input2, c);
+        re_Print(c);
+    }
+    if(op == '*'){
+        Mul(input1, input2, c);
+        re_Print(c);
+    }
+}
 void Mul(char input1[], char input2[], char c[])
 {
  char re_input1[LEN], re_input2[LEN];
@@ -259,7 +275,6 @@ else
 
  } //sub ²§¸¹ end
 } //sub end
-
 void Add(char input1[], char input2[], char c[])
 {
  char re_input1[LEN], re_input2[LEN];
@@ -427,9 +442,7 @@ void Add(char input1[], char input2[], char c[])
 
 
 }//add end
-
-void re_Print(char n[])
-{
+void re_Print(char n[]){
  int i;
  for(i=LEN-1; i>0; i--)
  {
@@ -445,25 +458,14 @@ void re_Print(char n[])
  printf("\n");
 }
 }
-void Print(char n[])
-{
-    int i;
-    for(i=0;i<strlen(n);i++)
-    {
-        printf("%c", n[i]);
-    }
-}
+
 
 void main()
 {
- char input1[] = "99999", input2[] = "-999", output[LEN];
- int i;
+ char input1[] = "-99999", input2[] = "-999", output[LEN];
 
- //Add(input1, input2, output);
- //Sub(input1, input2, output);
- Mul(input1, input2, output);
+ testOper("-99999", "-999", '*');
 
- re_Print(output);
 
 
 }
