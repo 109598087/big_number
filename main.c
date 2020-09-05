@@ -40,7 +40,7 @@ void Mul(char input1[], char input2[], char c[])
 
  //前置作業end
  int temp[LEN] = {0}, re_input1_int[LEN] = {0}, re_input2_int[LEN] = {0};
- int m_count; //計算幾個負數
+ int m_count=0; //計算幾個負數
  for(i=0;i<len1;i++){
     if(re_input1[i] == '-'){
         m_count += 1;
@@ -325,8 +325,7 @@ void Add(char input1[], char input2[], char c[])
      }
      else
         c[i] = re_input1[i] + re_input2[i]-'0';
-     if(re_input1[i] == '0' && re_input2[i] == '0') // 這裡有問題
-        break;
+
 
     }
  int temp[LEN];
@@ -359,7 +358,6 @@ void Add(char input1[], char input2[], char c[])
  } // add 同號 end
  else
  {
-     printf("異號\n");
      for(i=0;i<LEN;i++)
      {
          if(re_input1[i] == '-')
@@ -393,8 +391,7 @@ void Add(char input1[], char input2[], char c[])
                 c[i] = re_input1[i] - re_input2[i]+'0';
             else
                 c[i] = re_input2[i] - re_input1[i]+'0';
-         if(re_input1[i] == '0'&& re_input2[i] == '0') //有問題
-                break;
+
      }
      for(i=0;i<LEN;i++)
      {
@@ -443,28 +440,61 @@ void Add(char input1[], char input2[], char c[])
 
 }//add end
 void re_Print(char n[]){
- int i;
+ int i, count=0;
  for(i=LEN-1; i>0; i--)
  {
    int x = n[i] -'0';
    if(x == 0)
    {
+       count += 1;
        continue;
- }
- for(;i>=0;i--)
- {
+   }
+   for(;i>=0;i--)
+   {
      printf("%c", n[i]);
- }
+   }
  printf("\n");
-}
+ }
+ if(count == LEN-1)
+    printf("%c\n", '0');
+
 }
 
 
 void main()
 {
- char input1[] = "-99999", input2[] = "-999", output[LEN];
+ testOper("0", "0", '+');
+ testOper("9999999", "987", '+');
+ testOper("-9999999", "-987", '+');
+ testOper("1111333", "333", '+');
+ testOper("333", "-1111333", '+');
+ testOper("-333", "1111333", '+');
+ testOper("333", "-1111333", '+');
+ testOper("333", "1111333", '+');
 
- testOper("-99999", "-999", '*');
+ testOper("0", "0", '-');
+ testOper("-9999999", "987", '-');
+ testOper("9999999", "-987", '-');
+ testOper("9999999", "987", '-');
+ testOper("-9999999", "-987", '-');
+ testOper("333", "1111333", '-');
+
+ testOper("0", "0", '*'); //空白
+ testOper("123", "123", '*');
+ testOper("-123", "123", '*');
+ testOper("123", "-123", '*');
+ testOper("-123", "-123", '*');
+ testOper("1231", "123", '*');
+ testOper("-123", "1231", '*');
+ testOper("-2", "9999999999999999999999999999", '*');
+ testOper("9999999999999999999999999999", "-2", '*');
+
+
+
+
+
+
+
 
 
 
