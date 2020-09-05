@@ -131,15 +131,17 @@ if(input1_m == input2_m) //同號
             c[i] = re_input1[i] - re_input2[i]+'0';
         else
             c[i] = re_input2[i] - re_input1[i]+'0';
-     if(re_input1[i] == '0'&& re_input2[i] == '0') //有問題
-        if(len1>len2)
+    if(c[LEN-i-1] != '0'){
+        if(len1>len2){
             break;
-        else
-        {
-            c[i] = '-';
+        }else{
+            c[LEN-i] = '-';
             break;
         }
+    }
+
  }
+
  for(i=0;i<LEN;i++)
  {
         if(c[i] == '-' && c[i] == c[i+1])
@@ -174,7 +176,7 @@ if(input1_m == input2_m) //同號
  {
      if(temp[i] == 100)
      {
-         c[i] = '-'; //maybe problem
+         c[i] = '-';
          break;
      }
      c[i] = temp[i] + '0';
@@ -215,20 +217,17 @@ else
      }
      else
         c[i] = re_input1[i] + re_input2[i]-'0';
-     if(re_input1[i] == '0' && re_input2[i] == '0') // 這裡有問題
-        break;
 
     }
     if(len2>len1)
     {
-
         if(input2_rm == 1)
         {
             for(i=0;i<LEN;i++)
             {
-                if(c[i] == '0' && c[i+1] == '0') //有問題
+                if(c[LEN-i-1] != '0')
                 {
-                    c[i] = '-';
+                    c[LEN-i] = '-';
                     break;
                 }
             }
@@ -463,14 +462,14 @@ void re_Print(char n[]){
 
 void main()
 {
- testOper("0", "0", '+');
- testOper("9999999", "987", '+');
- testOper("-9999999", "-987", '+');
- testOper("1111333", "333", '+');
- testOper("333", "-1111333", '+');
- testOper("-333", "1111333", '+');
- testOper("333", "-1111333", '+');
- testOper("333", "1111333", '+');
+// testOper("0", "0", '+');
+// testOper("9999999", "987", '+');
+// testOper("-9999999", "-987", '+');
+// testOper("1111333", "333", '+');
+// testOper("333", "-1111333", '+');
+// testOper("-333", "1111333", '+');
+// testOper("333", "-1111333", '+');
+// testOper("333", "1111333", '+');
 
  testOper("0", "0", '-');
  testOper("-9999999", "987", '-');
@@ -478,16 +477,19 @@ void main()
  testOper("9999999", "987", '-');
  testOper("-9999999", "-987", '-');
  testOper("333", "1111333", '-');
+ testOper("-333", "-1111333", '-');
+ testOper("333", "-1111333", '-');
+ testOper("-333", "1111333", '-');
 
- testOper("0", "0", '*'); //空白
- testOper("123", "123", '*');
- testOper("-123", "123", '*');
- testOper("123", "-123", '*');
- testOper("-123", "-123", '*');
- testOper("1231", "123", '*');
- testOper("-123", "1231", '*');
- testOper("-2", "9999999999999999999999999999", '*');
- testOper("9999999999999999999999999999", "-2", '*');
+// testOper("0", "0", '*'); //空白
+// testOper("123", "123", '*');
+// testOper("-123", "123", '*');
+// testOper("123", "-123", '*');
+// testOper("-123", "-123", '*');
+// testOper("1231", "123", '*');
+// testOper("-123", "1231", '*');
+// testOper("-2", "9999999999999999999999999999", '*');
+// testOper("9999999999999999999999999999", "-2", '*');
 
 
 
