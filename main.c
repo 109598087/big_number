@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define LEN 100
+char re_input_f(char input[])
+{
+    char re_input[LEN];
+    int i,len = strlen(input);
+
+    for(i=0;i<LEN;i++){
+        re_input[i] = '0';
+    }
+    for(i=0;i<len;i++){
+        re_input[i] = input[len-i-1];
+    }
+    return re_input;
+}
 void testOper(char input1[], char input2[], char op)
 {
     char c[LEN];
@@ -463,34 +476,36 @@ void re_Print(char n[]){
 int main(void)
 {
  testOper("0", "0", '+');
- testOper("1111111", "333", '+');
- testOper("1111111", "-333", '+');
- testOper("-1111111", "333", '+');
- testOper("-1111111", "-333", '+');
- testOper("333", "1111111", '+');
- testOper("333", "-1111111", '+');
- testOper("-333", "1111111", '+');
- testOper("-333", "-1111111", '+');
+ testOper("1111111", "999", '+');
+ testOper("1111111", "-999", '+');
+ testOper("-1111111", "999", '+');
+ testOper("-1111111", "-999", '+');
+ testOper("999", "1111111", '+');
+ testOper("999", "-1111111", '+');
+ testOper("-999", "1111111", '+');
+ testOper("-999", "-1111111", '+');
 //
  testOper("0", "0", '-');
- testOper("1111111", "333", '-');
- testOper("1111111", "-333", '-');
- testOper("-1111111", "333", '-');
- testOper("-1111111", "-333", '-');
- testOper("333", "1111111", '-');
- testOper("333", "-1111111", '-');
- testOper("-333", "1111111", '-');
- testOper("-333", "-1111111", '-');
+ testOper("1111111", "999", '-');
+ testOper("1111111", "-999", '-');
+ testOper("-1111111", "999", '-');
+ testOper("-1111111", "-999", '-');
+ testOper("999", "1111111", '-');
+ testOper("999", "-1111111", '-');
+ testOper("-999", "1111111", '-');
+ testOper("-999", "-1111111", '-');
 //
-// testOper("0", "0", '*'); //ªÅ¥Õ
-// testOper("123", "123", '*');
-// testOper("-123", "123", '*');
-// testOper("123", "-123", '*');
-// testOper("-123", "-123", '*');
-// testOper("1231", "123", '*');
-// testOper("-123", "1231", '*');
-// testOper("-2", "9999999999999999999999999999", '*');
-// testOper("9999999999999999999999999999", "-2", '*');
+ testOper("0", "0", '*');
+ testOper("1111111", "999", '*');
+ testOper("1111111", "-999", '*');
+ testOper("-1111111", "999", '*');
+ testOper("-1111111", "-999", '*');
+ testOper("999", "1111111", '*');
+ testOper("999", "-1111111", '*');
+ testOper("-999", "1111111", '*');
+ testOper("-999", "-1111111", '*');
+ testOper("-2", "9999999999999999999999999999", '*');
+ testOper("9999999999999999999999999999", "-2", '*');
 return 0;
 
 
